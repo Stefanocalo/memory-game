@@ -1,15 +1,22 @@
-import React, {useState} from "react";
+import { useSpring, animated } from "@react-spring/web";
+import React from "react";
 import './Header.css';
 
-export function Header() {
+export function Header({isGameOn}) {
+
+    const header = useSpring({
+        top: isGameOn ? '-30%' : '0%'
+    })
 
     return(
-        <div className="headerContainer">
+        <animated.div 
+        style={header}
+        className="headerContainer">
             <div id='headerImg'></div>
             <div className="subContainer">
                 <span>Memory Game</span>
             </div>
 
-        </div>
+        </animated.div>
     )
 }

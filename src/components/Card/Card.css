@@ -1,0 +1,36 @@
+.cardWrapper {
+    width: 11%;
+    min-width: 10%;
+    height: 25%;
+    margin: 1rem 5.6% ;
+    transform-style: preserve-3d;
+    cursor: pointer;
+    position: relative;
+}
+
+.front, .back {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    border-radius: 15px;
+    display: block;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.front {
+    background-color: antiquewhite;
+    transform: rotate(-180deg);
+}
+
+.back {
+    background-color: black;
+}
+
+@media only screen and (max-width: 550px) {
+    .cardWrapper {
+        width: 6rem;
+        height: 15%;
+        margin: 0.5rem;
+    }
+}
