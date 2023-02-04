@@ -1,0 +1,8 @@
+.scoreWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: rgb(240, 240, 240);
+    font-weight: 800;
+}

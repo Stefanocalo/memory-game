@@ -1,0 +1,13 @@
+.startButton {
+    width: 14rem;
+    height: 4rem;
+    background-color: rgb(17, 159, 17);
+    border-radius: 15px;
+    color: rgb(240, 240, 240);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: absolute;
+}

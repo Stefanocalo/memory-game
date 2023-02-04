@@ -1,0 +1,23 @@
+#headerImg {
+    background: url("../../media/back.png") center center;
+    background-repeat: no-repeat;
+    background-color: rgb(0, 0, 0);
+    background-size: 30% auto;
+    height: 22vh;
+    width: 100%;
+}
+.headerContainer {
+    display: flex;
+    justify-content: start;
+    flex-direction: column;
+    z-index: 99;
+}
+
+.subContainer {
+    width: 100%;
+    text-align: center;
+    font-size: 3vh;
+    font-weight: 600;
+    background-color: rgb(0, 0, 0);
+    color: rgb(240, 240, 240);
+}
