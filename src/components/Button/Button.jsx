@@ -2,7 +2,9 @@ import React, {useState} from "react";
 import { useSpring, animated } from "@react-spring/web";
 import './Button.css';
 
-export function Button({children, isGameOn, setIsGameOn}) {
+import cards from "../../utils/cards";
+
+export function Button({children, isGameOn, setIsGameOn, setCardDeck}) {
 
     const [isHover, setIsHover] = useState(false);
 
@@ -14,7 +16,25 @@ export function Button({children, isGameOn, setIsGameOn}) {
             friction: 12,
             tension: 300
         }
-    })
+    });
+
+    const getRandomCards = () => {
+        let cardsArray = [];
+        while(cardsArray.length < 12) {
+            let randomIndex = Math.floor(Math.random() * 6);
+            if(cardsArray.filter(card => card.id === cards[randomIndex].id).length < 2) {
+                cardsArray.push(cards[randomIndex]);
+            }
+        }
+        console.log(cardsArray);
+        setCardDeck(cardsArray);
+    };
+
+
+    const trigger = () => {
+        setIsGameOn(true);
+        getRandomCards();
+    };
 
 
     return(
@@ -23,7 +43,7 @@ export function Button({children, isGameOn, setIsGameOn}) {
         onMouseEnter={() => setIsHover(true)}
         onMouseLeave={() => setIsHover(false)}
         role='button'
-        onClick={() => setIsGameOn(true)}
+        onClick={() => trigger()}
         className='startButton'
         >
             {children}

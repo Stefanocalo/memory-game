@@ -10,16 +10,26 @@ import cards from "../../utils/cards";
 export function GameField({isGameOn, setIsGameOn}) {
 
     const [score, setScore] = useState(0);
+    const [flipped, setFlipped] = useState(0);
+    const [cardDeck, setCardDeck] = useState([]);
+
+    let randomCards =[];
 
     useEffect(() => {
         if(!isGameOn) {
-            randomCards=[];
+            setCardDeck([]);
         }
-    },[isGameOn]);
+    },[isGameOn])
 
 
 
-
+    useEffect(() => {
+        if(flipped > 1) {
+            const newScore = score + 1;
+            setFlipped(0);
+            setScore(newScore);
+        }
+    },[flipped])
 
     const gameOn = useSpring({
         top: isGameOn ? '0%' : '-100%',
@@ -27,30 +37,13 @@ export function GameField({isGameOn, setIsGameOn}) {
             friction: 12,
             tension: 300
         }
-    })
-
-    let randomCards = [];
-
-    const renderCards = () => {
-        if(!isGameOn) {
-            randomCards = [];
-        } else {
-            while(randomCards.length < 12) {
-                let randomCardIndex = Math.floor(Math.random() * 6);
-                if(randomCards.filter(single => single.id === cards[randomCardIndex].id).length < 2) {
-                    randomCards.push(cards[randomCardIndex]);
-                };
-            };
-        }        
-    };
-
-    renderCards();
-
+    });
 
     return(
         <div 
         className="gameFieldWrapper">
             <Button
+            setCardDeck={setCardDeck}
             isGameOn={isGameOn}
             setIsGameOn={setIsGameOn}
             randomCards={randomCards}
@@ -61,10 +54,12 @@ export function GameField({isGameOn, setIsGameOn}) {
             >
                 <Score score={score} setScore={setScore}/>
                 <div className="cardsSection">
-                    {randomCards.map((card, index) => (
+                    {cardDeck.length > 1 && cardDeck.map((card, index) => (
                         <Card
                         card={card}
                         key={index}
+                        flipped={flipped}
+                        setFlipped={setFlipped}
                          />
                     ))}
                 </div>

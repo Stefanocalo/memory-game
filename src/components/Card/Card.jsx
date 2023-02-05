@@ -3,7 +3,7 @@ import { useSpring, animated } from "@react-spring/web";
 
 import './Card.css';
 
-export function Card({card, flippedCard ,setFlippedCard}) {
+export function Card({card, flipped ,setFlipped}) {
 
     const [isFlipped, setIsFlipped] = useState(false);
 
@@ -16,7 +16,9 @@ export function Card({card, flippedCard ,setFlippedCard}) {
     });
 
     const trigger = () => {
+        const newCount = flipped + 1;
         setIsFlipped(true);
+        setFlipped(newCount);
     }
 
     return(
