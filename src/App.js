@@ -7,10 +7,14 @@ function App() {
 
   const [isGameOn, setIsGameOn] = useState(false);
 
+
   return (
     <div >
       <Header isGameOn={isGameOn} />
-      <GameField isGameOn={isGameOn} setIsGameOn={setIsGameOn}/>
+      <GameField 
+      isGameOn={isGameOn} 
+      setIsGameOn={setIsGameOn}
+       />
     </div>
   );
 }

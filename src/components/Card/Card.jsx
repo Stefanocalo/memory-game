@@ -3,7 +3,7 @@ import { useSpring, animated } from "@react-spring/web";
 
 import './Card.css';
 
-export function Card() {
+export function Card({card, flippedCard ,setFlippedCard}) {
 
     const [isFlipped, setIsFlipped] = useState(false);
 
@@ -15,16 +15,24 @@ export function Card() {
         }
     });
 
+    const trigger = () => {
+        setIsFlipped(true);
+    }
+
     return(
         <animated.div
         style={flipCard}
         className='cardWrapper'
-        onClick={() => setIsFlipped(true)}
+        onClick={() => trigger()}
         >
             <animated.div 
             style={flipCard}
             className='front'>
-                <p>test</p>
+                <div className="imageContainer">
+                    <img
+                    className="image"
+                    src={require(`../media/${card.id}.png`)} />
+                </div>
             </animated.div>
             <div 
             className='back'>
