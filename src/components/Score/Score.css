@@ -4,7 +4,7 @@
     align-items: center;
     flex-direction: column;
     color: rgb(240, 240, 240);
-    background-color: rgba(8, 46, 4, 0.6);
+    background-color: rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(8px);
     font-weight: 800;
     width: 80%;

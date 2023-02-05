@@ -26,7 +26,6 @@ export function Button({children, isGameOn, setIsGameOn, setCardDeck}) {
                 cardsArray.push(cards[randomIndex]);
             }
         }
-        console.log(cardsArray);
         setCardDeck(cardsArray);
     };
 

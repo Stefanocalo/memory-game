@@ -12,6 +12,8 @@ export function GameField({isGameOn, setIsGameOn}) {
     const [score, setScore] = useState(0);
     const [flipped, setFlipped] = useState(0);
     const [cardDeck, setCardDeck] = useState([]);
+    const [activeCard, setActiveCard] = useState([]);
+    const [correctPair, setCorrectPair] = useState([]);
 
     let randomCards =[];
 
@@ -19,17 +21,30 @@ export function GameField({isGameOn, setIsGameOn}) {
         if(!isGameOn) {
             setCardDeck([]);
         }
-    },[isGameOn])
-
+    },[isGameOn]);
 
 
     useEffect(() => {
-        if(flipped > 1) {
+        if(flipped === 2) {
             const newScore = score + 1;
-            setFlipped(0);
+            if(activeCard[0] === activeCard[1]) {
+                setCorrectPair((prevState) => [...prevState, activeCard[0]]);
+                setActiveCard([]);
+            } else {
+                setActiveCard([]);
+            }
             setScore(newScore);
+            const timeoutId = setTimeout(() => {
+                setFlipped(0);
+            },1000);           
+
+            return () => {
+                clearTimeout(timeoutId);
+            }
         }
-    },[flipped])
+    },[flipped]);
+
+    
 
     const gameOn = useSpring({
         top: isGameOn ? '0%' : '-100%',
@@ -56,6 +71,8 @@ export function GameField({isGameOn, setIsGameOn}) {
                 <div className="cardsSection">
                     {cardDeck.length > 1 && cardDeck.map((card, index) => (
                         <Card
+                        correctPair={correctPair}
+                        setActiveCard={setActiveCard}
                         card={card}
                         key={index}
                         flipped={flipped}
