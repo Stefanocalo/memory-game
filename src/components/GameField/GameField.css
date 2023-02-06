@@ -24,3 +24,7 @@
     justify-content: center;
     flex-wrap: wrap;
 }
+
+.finalScoreWrapper {
+    width: 100%;
+}

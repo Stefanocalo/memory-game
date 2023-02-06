@@ -4,7 +4,7 @@ import './Button.css';
 
 import cards from "../../utils/cards";
 
-export function Button({children, isGameOn, setIsGameOn, setCardDeck}) {
+export function Button({children, isGameOn, setIsGameOn, setCardDeck, setIsBestScore}) {
 
     const [isHover, setIsHover] = useState(false);
 
@@ -33,6 +33,7 @@ export function Button({children, isGameOn, setIsGameOn, setCardDeck}) {
     const trigger = () => {
         setIsGameOn(true);
         getRandomCards();
+        setIsBestScore(false);
     };
 
 

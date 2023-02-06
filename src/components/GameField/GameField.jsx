@@ -5,7 +5,7 @@ import './GameField.css';
 import { Score } from "../Score/Score";
 import { Button } from "../Button/Button";
 import { Card } from "../Card/Card";
-import cards from "../../utils/cards";
+import { FinalScore } from "../Score/FinalScore";
 
 export function GameField({isGameOn, setIsGameOn}) {
 
@@ -14,12 +14,31 @@ export function GameField({isGameOn, setIsGameOn}) {
     const [cardDeck, setCardDeck] = useState([]);
     const [activeCard, setActiveCard] = useState([]);
     const [correctPair, setCorrectPair] = useState([]);
+    const [showScore, setShowScore] = useState(false);
+    const [isBestScore, setIsBestScore] = useState(false);
 
     let randomCards =[];
 
     useEffect(() => {
+        if(correctPair.length === 6) {
+            const timeoutId = setTimeout(() => {
+                setCorrectPair([]);
+                setIsGameOn(false);
+                setShowScore(true);
+            },1000);           
+
+            return () => {
+                clearTimeout(timeoutId);
+            }
+        }
+    },[correctPair])
+
+    useEffect(() => {
         if(!isGameOn) {
             setCardDeck([]);
+        }
+        if(isGameOn) {
+            setShowScore(false);
         }
     },[isGameOn]);
 
@@ -44,7 +63,7 @@ export function GameField({isGameOn, setIsGameOn}) {
         }
     },[flipped]);
 
-    
+
 
     const gameOn = useSpring({
         top: isGameOn ? '0%' : '-100%',
@@ -58,6 +77,7 @@ export function GameField({isGameOn, setIsGameOn}) {
         <div 
         className="gameFieldWrapper">
             <Button
+            setIsBestScore={setIsBestScore}
             setCardDeck={setCardDeck}
             isGameOn={isGameOn}
             setIsGameOn={setIsGameOn}
@@ -67,7 +87,11 @@ export function GameField({isGameOn, setIsGameOn}) {
             style={gameOn}
             className='gameOn'
             >
-                <Score score={score} setScore={setScore}/>
+                <Score
+                score={score}
+                setScore={setScore}
+                showScore={showScore}
+                />
                 <div className="cardsSection">
                     {cardDeck.length > 1 && cardDeck.map((card, index) => (
                         <Card
@@ -80,6 +104,18 @@ export function GameField({isGameOn, setIsGameOn}) {
                          />
                     ))}
                 </div>
+            </animated.div>
+            <animated.div
+                className='finalScoreWrapper'
+            >
+                  <FinalScore
+                isBestScore={isBestScore}
+                setIsBestScore={setIsBestScore}
+                score={score}
+                setScore={setScore}
+                showScore={showScore}
+                />
+            
             </animated.div>
         </div>
     )
