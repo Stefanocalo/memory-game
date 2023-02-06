@@ -42,7 +42,6 @@ export function GameField({isGameOn, setIsGameOn}) {
         }
     },[isGameOn]);
 
-
     useEffect(() => {
         if(flipped === 2) {
             const newScore = score + 1;

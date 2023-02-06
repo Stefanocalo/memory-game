@@ -22,8 +22,11 @@ export function FinalScore({score, setScore, showScore, isBestScore, setIsBestSc
         }
     },[showScore]);
 
+    let height = window.innerHeight;
+
     const modal = useSpring({
-        top: showScore ? '-27vh' : '-200vh',
+        scale: showScore ? 1 : 0,
+        opacity: showScore ? 1 : 0,
         config: {
             friction: 12,
             tension: 300
