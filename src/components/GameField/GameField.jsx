@@ -76,6 +76,7 @@ export function GameField({isGameOn, setIsGameOn}) {
         <div 
         className="gameFieldWrapper">
             <Button
+            setScore={setScore}
             setIsBestScore={setIsBestScore}
             setCardDeck={setCardDeck}
             isGameOn={isGameOn}

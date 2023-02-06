@@ -18,7 +18,6 @@ export function FinalScore({score, setScore, showScore, isBestScore, setIsBestSc
                     setIsBestScore(true);
                 }
             }
-            setScore(0)
         }
     },[showScore]);
 

@@ -7,6 +7,22 @@ import { useEffect } from "react";
 export function Card({card,correctPair, flipped ,setFlipped, setActiveCard}) {
 
     const [clickable, setClickable] = useState(true);
+    const [animate, setAnimate] = useState(false);
+    const [isFlipped, setIsFlipped] = useState(false);
+
+    useEffect(() => {
+        if(!animate) {
+            return
+        }
+
+        const timeoutId = setTimeout(() => {
+            setAnimate(false);
+        },150);           
+
+        return () => {
+            clearTimeout(timeoutId);
+        }
+    },[animate])
 
 
     useEffect(() => {
@@ -16,6 +32,8 @@ export function Card({card,correctPair, flipped ,setFlipped, setActiveCard}) {
                 setClickable(false);
             } else {
                 setIsFlipped(false);
+                setClickable(true);
+                setAnimate(true);
             }
         },1000);           
 
@@ -27,10 +45,9 @@ export function Card({card,correctPair, flipped ,setFlipped, setActiveCard}) {
 
     console.log(correctPair);
 
-    const [isFlipped, setIsFlipped] = useState(false);
-
     const flipCard = useSpring({
         transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
+        scale: animate ? 1.2 : 1,
         config: {
             tension: 180,
             friction: 12
@@ -42,7 +59,11 @@ export function Card({card,correctPair, flipped ,setFlipped, setActiveCard}) {
         const newCount = flipped + 1;
         setIsFlipped(true);
         setFlipped(newCount);
+        setClickable(false);
         setActiveCard((prevState) => [...prevState, card.id])
+        }
+        if(isFlipped) {
+            setAnimate(true);
         }
     }
 

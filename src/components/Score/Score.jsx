@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import { useEffect } from "react";
 import './Score.css';
 
-export function Score({score, setScore, showScore}) {
+export function Score({score, showScore}) {
 
     const [bestScore, setBestScore] = useState(0);
 
@@ -15,7 +15,6 @@ export function Score({score, setScore, showScore}) {
                     setBestScore(score);
                 }
             }
-            setScore(0)
         }
     },[showScore]);
 
