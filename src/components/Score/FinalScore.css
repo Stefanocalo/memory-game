@@ -11,7 +11,8 @@
 
 .finalScoreContainer {
     display: flex;
-    justify-content: space-around;
+    align-items: center;
+    justify-content: center;
     height: 50vh;
     width: 100%;
     background-color: rgba(0, 0, 0, 0.6);
@@ -41,5 +42,7 @@
     .finalScoreWrapper {
         margin: 0;
         width: 95%;
+        height: 30%;
     }
+
 }
