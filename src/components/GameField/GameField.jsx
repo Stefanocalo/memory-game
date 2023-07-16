@@ -67,8 +67,8 @@ export function GameField({isGameOn, setIsGameOn}) {
     const gameOn = useSpring({
         top: isGameOn ? '0%' : '-100%',
         config: {
-            friction: 12,
-            tension: 300
+            friction: 10,
+            tension: 60
         }
     });
 

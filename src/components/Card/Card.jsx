@@ -49,8 +49,8 @@ export function Card({card,correctPair, flipped ,setFlipped, setActiveCard}) {
         transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
         scale: animate ? 1.2 : 1,
         config: {
-            tension: 180,
-            friction: 12
+            friction: 10,
+            tension: 60
         }
     });
 

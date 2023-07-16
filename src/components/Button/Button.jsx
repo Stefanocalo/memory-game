@@ -13,8 +13,8 @@ export function Button({children, isGameOn, setIsGameOn, setCardDeck, setIsBestS
         border: isHover ? '3px solid black' : '2px solid black',
         top: isGameOn ? '-20%' : '80%',
         config: {
-            friction: 12,
-            tension: 300
+            friction: 10,
+            tension: 60
         }
     });
 

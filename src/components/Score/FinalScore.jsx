@@ -27,8 +27,8 @@ export function FinalScore({score, setScore, showScore, isBestScore, setIsBestSc
         scale: showScore ? 1 : 0,
         opacity: showScore ? 1 : 0,
         config: {
-            friction: 12,
-            tension: 300
+            friction: 10,
+            tension: 60
         }
     })
 
